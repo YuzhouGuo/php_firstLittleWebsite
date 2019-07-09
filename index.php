@@ -21,7 +21,7 @@ if(count($_POST)> 0)
 <!DOCTYPE html>
 <html>
     <head>
-        <title>PHP_Practise<</title>
+        <title>PHP_Practise</title>
 		<link href="assets/styles.css" rel="stylesheet" type="text/css" />
     </head>
 
