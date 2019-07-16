@@ -1,73 +1,70 @@
 <?php
 
 include 'assets/include.php';
-include 'assets/dbInfo.php';   // we include the dbInfo file here
+require 'assets/dbInfo.php';
 
-if(count($_POST)> 0)
-{
-    if($_POST['email'] != '')
+ if(count($_POST)> 0)
+ {
+    if($_POST["email"] != '')
     {
         $_SESSION['formPostData'] = $_POST;
         header('Location: final.php');
     }
     else
     {
-		$emailError = 'validation';
+        $emailError = 'validation';
     }
 }
 
 ?>
-
 <!DOCTYPE html>
 <html>
     <head>
-        <title>PHP_Practise</title>
-		<link href="assets/styles.css" rel="stylesheet" type="text/css" />
+        <title>Child of Light Mailing Page</title>
+		<link href="assets/format.css" rel="stylesheet" type="text/css" />
     </head>
-
     <body>
 		<div id="Header">
-			<img src="assets/child_of_light.jpeg" border="0" alt="">
+			<img src="assets/ubisoft.png" width= 33% height=80% border="0" alt="">
 			<h2>
-				Become our member!
+				Join Our Adventure!
 			</h2>
 		</div>        
         <div id="Body">
-            <form method="post" action="final.php" >
+            <form method="post" action="index.php" >
                 <div>
-                    <label>Favorite Character:</label>
-                    <select name="Character">
+                    <label><strong>Favorite platform:</strong></label>
+                    <select name="plarform">
                         <?php while($row = $resultObj->fetch_assoc()): ?>
-                            <option value="<?=$row['id']?>"><?=$row['name']?></option>
+                            <option value="<?=$row['platformName']?>"><?=$row['platformName']?></option>
                         <?php endWhile; ?>
                     </select>
                 </div>		
-                <!-- <div class="Character">
-                    <label>Favorite Character:</label>
-                    Aurora <input type="checkbox" name="characters[]" value="aurora">
-                    Rubella <input type="checkbox" name="characters[]" value="rubella"> 
-                    Finn <input type="checkbox" name="characters[]" value="Finn"> 
-                </div> -->
+                <div class="multiple">
+                    <label><strong>Your Mode is:</strong></label>
+                    Single-player <input type="checkbox" name="mode[]" value="Single-player">
+                    Multiplayer <input type="checkbox" name="mode[]" value="Multiplayer"> 
+                </div>
                 <div>
-                    <label>Comments:</label>
+                    <label><strong>Comments:</strong></label>
                     <textarea name="comments"></textarea>
                 </div>
                 <div>
-                    <label>Name:</label>
+                    <label><strong>Your name:</strong></label>
                     <input type="text" name="name" />
                 </div>
                 <div class="<?=$emailError?>">
-                    <label>E-mail Address:</label>
+                    <label><strong>E-mail Address:</strong></label>
                     <input type="text" name="email" />
                 </div>
-                <div  class="notification">
-                    <label>Receive Notification:</label>
-                    Yes <input type="noti" name="notification" value="no">
-                    No <input type="noti" name="notification" value="yes">
+                <div  class="multiple">
+                    <label><strong>Receive Updates:</strong></label>
+                    Yes <input type="radio" name="update" value="no">
+                    No <input type="radio" name="update" value="yes">
                 </div>
-                <div class="multiple">
+                <div class="SubmitButton">
                     <label>&nbsp;</label>
-                    <input type="submit" name="submit" value="Join The Adventure!">
+                    <input type="submit" name="submit" value="Join Mailing List">
                 </div>
             </form>
         </div>
@@ -78,6 +75,8 @@ if(count($_POST)> 0)
 
 $resultObj->close();
 $connection->close();
-//Remember to close the server connection
+
+// print_r( $_POST );
+// echo count($_POST);
 
 ?>

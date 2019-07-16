@@ -2,9 +2,9 @@
 
 session_start();
 
-$dbPassword = "PHP_Practise";
-$dbUserName = "PHP_Practise";
+$dbPassword = "newpass123";
+$dbUserName = "root";
 $dbServer = "localhost";
-$dbName = "PHP_Practise";
+$dbName = "phpBasics";
 
 ?>
